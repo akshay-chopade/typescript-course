@@ -19,7 +19,19 @@ export type NoteData = {
   tags: Tag[];
 };
 
+export type RawNote = {
+  id: string;
+};
+export type RawNoteData = {
+  title: string;
+  markdown: string;
+  tagIds: Tag[];
+};
+
 function App(): JSX.Element {
+  //useLocalStorage -> a custom hook
+  const [notes, setNotes] = useLocalStorage<RawNote[]>("NOTES", []);
+  const [tags, setTags] = useLocalStorage<Tag[]>("TAGS", []);
   return (
     <Container className="my-4">
       <Routes>
